@@ -23,135 +23,120 @@ const teamGroups = [
       0,
       '',
       'Sociedad Deportiva Aucas',
-      '../resources/images/PNG/SERIE-A/team-1.png'
+      './resources/images/PNG/SERIE-A/team-1.png'
     ),
     new Team(
       1,
       '',
       'Universidad Católica',
-      '../resources/images/PNG/SERIE-A/team-2.png'
+      './resources/images/PNG/SERIE-A/team-2.png'
     ),
     new Team(
       2,
       '',
       'Independiente del Valle',
-      '../resources/images/PNG/SERIE-A/team-3.png'
+      './resources/images/PNG/SERIE-A/team-3.png'
     ),
     new Team(
       3,
       '',
       'Liga Deportiva Universitaria',
-      '../resources/images/PNG/SERIE-A/team-4.png'
+      './resources/images/PNG/SERIE-A/team-4.png'
     ),
     new Team(
       4,
       '',
       'Barcelona Sporting Club',
-      '../resources/images/PNG/SERIE-A/team-5.png'
+      './resources/images/PNG/SERIE-A/team-5.png'
     ),
     new Team(
       5,
       '',
       'Club Sport Emelec',
-      '../resources/images/PNG/SERIE-A/team-6.png'
+      './resources/images/PNG/SERIE-A/team-6.png'
     ),
-    new Team(
-      6,
-      '',
-      'Deportivo Cuenca',
-      '../resources/images/PNG/SERIE-A/team-7.png'
-    ),
+    new Team(6, '', 'Deportivo Cuenca', './resources/images/PNG/SERIE-A/team-7.png'),
     new Team(
       7,
       '',
       'Delfin Sporting Club',
-      '../resources/images/PNG/SERIE-A/team-8.png'
+      './resources/images/PNG/SERIE-A/team-8.png'
     ),
     new Team(
       8,
       '',
       'Orense Sporting Club',
-      '../resources/images/PNG/SERIE-A/team-9.png'
+      './resources/images/PNG/SERIE-A/team-9.png'
     ),
-    new Team(9, '', 'Guayaquil City', '../resources/images/PNG/SERIE-A/team-10.png'),
+    new Team(9, '', 'Guayaquil City', './resources/images/PNG/SERIE-A/team-10.png'),
     new Team(
       10,
       '',
       'Gualaceo Sporting Club',
-      '../resources/images/PNG/SERIE-A/team-11.png'
+      './resources/images/PNG/SERIE-A/team-11.png'
     ),
     new Team(
       11,
       '',
       'Técnico Universitario',
-      '../resources/images/PNG/SERIE-A/team-12.png'
+      './resources/images/PNG/SERIE-A/team-12.png'
     ),
-    new Team(12, '', 'Mushuc Runa', '../resources/images/PNG/SERIE-A/team-13.png'),
+    new Team(12, '', 'Mushuc Runa', './resources/images/PNG/SERIE-A/team-13.png'),
     new Team(
       13,
       '',
       'Cumbayá Fútbol Club',
-      '../resources/images/PNG/SERIE-A/team-14.png'
+      './resources/images/PNG/SERIE-A/team-14.png'
     ),
-    new Team(14, '', 'El Nacional', '../resources/images/PNG/SERIE-A/team-15.png'),
+    new Team(14, '', 'El Nacional', './resources/images/PNG/SERIE-A/team-15.png'),
     new Team(
       15,
       '',
       'Libertad Fútbol Club',
-      '../resources/images/PNG/SERIE-A/team-16.png'
+      './resources/images/PNG/SERIE-A/team-16.png'
     ),
   ]),
   new TeamGroup(1, '', 'Equipos Serie B', 'serie-b', [
-    new Team(
-      0,
-      '',
-      'Macará de Ambato',
-      '../resources/images/PNG/SERIE-B/team-1.png'
-    ),
-    new Team(
-      1,
-      '',
-      'Nueve de Octubre',
-      '../resources/images/PNG/SERIE-B/team-2.png'
-    ),
+    new Team(0, '', 'Macará de Ambato', './resources/images/PNG/SERIE-B/team-1.png'),
+    new Team(1, '', 'Nueve de Octubre', './resources/images/PNG/SERIE-B/team-2.png'),
     new Team(
       2,
       '',
       'Independiente Junior',
-      '../resources/images/PNG/SERIE-B/team-3.png'
+      './resources/images/PNG/SERIE-B/team-3.png'
     ),
     new Team(
       3,
       '',
       'Deportivo América',
-      '../resources/images/PNG/SERIE-B/team-4.png'
+      './resources/images/PNG/SERIE-B/team-4.png'
     ),
     new Team(
       4,
       '',
       'Imbabura Sporting Club',
-      '../resources/images/PNG/SERIE-B/team-5.png'
+      './resources/images/PNG/SERIE-B/team-5.png'
     ),
-    new Team(5, '', 'Chacaritas', '../resources/images/PNG/SERIE-B/team-6.png'),
+    new Team(5, '', 'Chacaritas', './resources/images/PNG/SERIE-B/team-6.png'),
     new Team(
       6,
       '',
       'Búhos ULVR Fútbol Club',
-      '../resources/images/PNG/SERIE-B/team-7.png'
+      './resources/images/PNG/SERIE-B/team-7.png'
     ),
     new Team(
       7,
       '',
       'Manta Fútbol Club',
-      '../resources/images/PNG/SERIE-B/team-8.png'
+      './resources/images/PNG/SERIE-B/team-8.png'
     ),
     new Team(
       8,
       '',
       'Club Vargas Torres',
-      '../resources/images/PNG/SERIE-b/team-9.png'
+      './resources/images/PNG/SERIE-b/team-9.png'
     ),
-    new Team(9, '', 'Cuniburp F.C.', '../resources/images/PNG/SERIE-B/team-10.png'),
+    new Team(9, '', 'Cuniburp F.C.', './resources/images/PNG/SERIE-B/team-10.png'),
   ]),
 ];
 
