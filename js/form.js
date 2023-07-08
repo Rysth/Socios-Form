@@ -190,12 +190,14 @@ window.onload = () => {
 
     formFieldsets.forEach((fieldset) => {
       fieldset.disabled = true;
-      fieldset.querySelector('.form-legend').classList.remove('text-secondary');
+      fieldset.querySelector('.form-legend').classList.add('text-secondary');
     });
 
     if (targetRadio.checked) {
       targetFieldset.disabled = false;
-      targetFieldset.querySelector('.form-legend').classList.add('text-secondary');
+      targetFieldset
+        .querySelector('.form-legend')
+        .classList.remove('text-secondary');
     }
   }
 
@@ -204,6 +206,44 @@ window.onload = () => {
   radios.forEach((radio) => {
     radio.addEventListener('change', handleRadioChange);
   });
+
+  // Function to handle form submission
+  function handleFormSubmit(event) {
+    event.preventDefault(); // Prevent the form from submitting normally
+
+    // Get the selected series
+    const selectedSeries = document.querySelector(
+      'input[name="serie"]:checked'
+    ).value;
+
+    // Get the selected teams within the selected series
+    const selectedTeams = Array.from(
+      document.querySelectorAll(`.${selectedSeries}:checked`)
+    ).map((checkbox) => {
+      const teamId = parseInt(checkbox.value);
+      const teamGroup = teamGroups.find((group) => group.slug === selectedSeries);
+      return teamGroup.teams.find((team) => team.id === teamId);
+    });
+
+    // Create the JSON object based on the selected series and teams
+    const jsonObject = {
+      serie: selectedSeries.toUpperCase(),
+      teams: selectedTeams.map((team) => {
+        return {
+          id: team.id,
+          name: team.name,
+        };
+      }),
+    };
+
+    console.log(JSON.stringify(jsonObject, null, 2)); // Display the JSON object in the console (you can modify this part as needed)
+
+    // You can perform further actions with the JSON object here, such as sending it to a server or manipulating it as desired.
+  }
+
+  // Add event listener to the form submit event
+  const form = document.getElementById('form');
+  form.addEventListener('submit', handleFormSubmit);
 };
 
 /* Falta hacer que retorne el JSON */
