@@ -134,7 +134,7 @@ const teamGroups = [
       8,
       '',
       'Club Vargas Torres',
-      './resources/images/PNG/SERIE-b/team-9.png'
+      './resources/images/PNG/SERIE-B/team-9.png'
     ),
     new Team(9, '', 'Cuniburp F.C.', './resources/images/PNG/SERIE-B/team-10.png'),
   ]),
