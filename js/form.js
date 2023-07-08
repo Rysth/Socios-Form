@@ -166,8 +166,7 @@ function createFieldset(teamGroup) {
       <div class="form-check col-12 col-xl-6">
         <input
           class="form-check-input ${teamGroup.slug}"
-          type="radio"
-          name="${teamGroup.slug}"
+          type="checkbox"
           value="${element.id}"
           id="${teamGroup.slug}-${index}"
         />
