@@ -207,6 +207,8 @@ window.onload = () => {
     radio.addEventListener('change', handleRadioChange);
   });
 
+  const form = document.getElementById('form');
+
   // Function to handle form submission
   function handleFormSubmit(event) {
     event.preventDefault(); // Prevent the form from submitting normally
@@ -238,11 +240,15 @@ window.onload = () => {
 
     console.log(JSON.stringify(jsonObject, null, 2)); // Display the JSON object in the console (you can modify this part as needed)
 
+    formFieldsets.forEach((fieldset) => {
+      fieldset.disabled = true;
+      fieldset.querySelector('.form-legend').classList.add('text-secondary');
+    });
+    form.reset();
     // You can perform further actions with the JSON object here, such as sending it to a server or manipulating it as desired.
   }
 
   // Add event listener to the form submit event
-  const form = document.getElementById('form');
   form.addEventListener('submit', handleFormSubmit);
 };
 
