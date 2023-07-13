@@ -229,8 +229,8 @@ window.onload = () => {
 
     // Create the JSON object based on the selected series and teams
     const jsonObject = {
-      serie: selectedSeries.toUpperCase(),
-      teams: selectedTeams.map((team) => {
+      SERIE: selectedSeries.toUpperCase(),
+      EQUIPOS: selectedTeams.map((team) => {
         return {
           id: team.id,
           name: team.name,
@@ -250,6 +250,37 @@ window.onload = () => {
 
   // Add event listener to the form submit event
   form.addEventListener('submit', handleFormSubmit);
+
+  // Function to handle file selection
+  function handleFileUpload(event) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = (fileEvent) => {
+      const fileData = fileEvent.target.result;
+
+      // Compare the file data to the values or criteria associated with the checkboxes
+      // Select the checkboxes programmatically based on the comparison
+      // You may need to parse the file data and perform appropriate comparisons
+
+      // Example: Select checkboxes with specific values
+      const checkboxes = Array.from(document.querySelectorAll('.form-check-input'));
+      checkboxes.forEach((checkbox) => {
+        const checkboxValue = checkbox.value;
+        // Perform the comparison based on the file data and checkbox values
+        // For example, if the checkbox value matches a certain condition in the file data, select the checkbox
+        if (fileData.includes(checkboxValue)) {
+          checkbox.checked = true;
+        }
+      });
+    };
+
+    reader.readAsText(file); // Read the file as text, adjust this based on the type of file you're working with
+  }
+
+  // Add event listener to the file input element
+  const fileInput = document.getElementById('file-input');
+  fileInput.addEventListener('change', handleFileUpload);
 };
 
 /* Falta hacer que retorne el JSON */
