@@ -96,6 +96,7 @@ image {
   border-radius: 8px;
   border: 1px solid black;
   padding: 1em 0.5em;
+  display: none;
 }
 
 .form-legend {
@@ -116,10 +117,6 @@ image {
 @media (min-width: 768px) {
   .logo {
     max-width: 30em;
-  }
-
-  .form-system {
-    grid-template-columns: repeat(2, 1fr);
   }
 
   .form-check-label {

@@ -143,19 +143,20 @@ const teamGroups = [
 const formSystem = Array.from(document.querySelectorAll('.form-system'));
 
 // Function to create the fieldset for each team group
-function createFieldset(teamGroup) {
-  // Concatenate every team contained within each team group
-  const teamsHTML = teamGroup.teams
+function createFieldset() {
+  const allTeams = teamGroups.flatMap((group) => group.teams);
+
+  const teamsHTML = allTeams
     .map(
       (element, index) => `
-      <div class="form-check col-12 col-xl-6">
+      <div class="form-check col-12 col-xl-3">
         <input
-          class="form-check-input ${teamGroup.slug}"
+          class="form-check-input"
           type="checkbox"
           value="${element.id}"
-          id="${teamGroup.slug}-${index}"
+          id="team-${index}"
         />
-        <label class="form-check-label" for="${teamGroup.slug}-${index}">
+        <label class="form-check-label" for="team-${index}">
           <img class="form-image" src="${element.logo}" alt="">
           ${element.name}
         </label>
@@ -164,18 +165,16 @@ function createFieldset(teamGroup) {
     )
     .join('');
 
-  // Add the whole content within the form-system element
   const formSystem = document.getElementById('form-system');
-  formSystem.innerHTML += `
-    <fieldset class="form-fieldset ${teamGroup.slug}" disabled>
-      <legend class="fs-5 form-legend text-secondary">${teamGroup.name}</legend>
-      <div class="row px-3 ">
+  formSystem.innerHTML = `
+    <fieldset class="form-fieldset">
+      <legend class="fs-5 form-legend">Seleccione los Equipos</legend>
+      <div class="row px-3">
         ${teamsHTML}
       </div>
     </fieldset>
   `;
 }
-
 window.onload = () => {
   teamGroups.forEach(createFieldset);
 
@@ -184,25 +183,17 @@ window.onload = () => {
   // Function to handle radio button change
   function handleRadioChange(event) {
     const targetRadio = event.target;
-    const targetFieldset = formFieldsets.find((fieldset) =>
-      fieldset.classList.contains(targetRadio.value)
-    );
+    const targetFieldset = document.querySelector('.form-fieldset');
 
-    formFieldsets.forEach((fieldset) => {
-      fieldset.disabled = true;
-      fieldset.querySelector('.form-legend').classList.add('text-secondary');
-    });
-
-    if (targetRadio.checked) {
-      targetFieldset.disabled = false;
-      targetFieldset
-        .querySelector('.form-legend')
-        .classList.remove('text-secondary');
+    if (targetRadio.value === 'true') {
+      targetFieldset.style.display = 'block';
+    } else {
+      targetFieldset.style.display = 'none';
     }
   }
 
   // Add event listeners to the radio buttons
-  const radios = document.querySelectorAll('input[type="radio"][name="serie"]');
+  const radios = document.querySelectorAll('input[type="radio"][name="socio"]');
   radios.forEach((radio) => {
     radio.addEventListener('change', handleRadioChange);
   });
@@ -211,76 +202,38 @@ window.onload = () => {
 
   // Function to handle form submission
   function handleFormSubmit(event) {
-    event.preventDefault(); // Prevent the form from submitting normally
+    event.preventDefault();
 
-    // Get the selected series
-    const selectedSeries = document.querySelector(
-      'input[name="serie"]:checked'
-    ).value;
+    const selectedRadio = document.querySelector('input[name="socio"]:checked');
+    const selectedValue = selectedRadio ? selectedRadio.value : '';
 
-    // Get the selected teams within the selected series
     const selectedTeams = Array.from(
-      document.querySelectorAll(`.${selectedSeries}:checked`)
+      document.querySelectorAll('.form-fieldset input[type="checkbox"]:checked')
     ).map((checkbox) => {
       const teamId = parseInt(checkbox.value);
-      const teamGroup = teamGroups.find((group) => group.slug === selectedSeries);
-      return teamGroup.teams.find((team) => team.id === teamId);
+      const team = teamGroups
+        .flatMap((group) => group.teams)
+        .find((team) => team.id === teamId);
+      return {
+        id: team.id,
+        name: team.name,
+      };
     });
 
-    // Create the JSON object based on the selected series and teams
     const jsonObject = {
-      SERIE: selectedSeries.toUpperCase(),
-      EQUIPOS: selectedTeams.map((team) => {
-        return {
-          id: team.id,
-          name: team.name,
-        };
-      }),
+      SOCIO: selectedValue,
+      EQUIPOS: selectedTeams,
     };
 
-    console.log(JSON.stringify(jsonObject, null, 2)); // Display the JSON object in the console (you can modify this part as needed)
+    console.log(JSON.stringify(jsonObject, null, 2));
+    console.log(jsonObject);
 
-    formFieldsets.forEach((fieldset) => {
-      fieldset.disabled = true;
-      fieldset.querySelector('.form-legend').classList.add('text-secondary');
-    });
+    const targetFieldset = document.querySelector('.form-fieldset');
+    targetFieldset.style.display = 'none';
+
     form.reset();
-    // You can perform further actions with the JSON object here, such as sending it to a server or manipulating it as desired.
   }
 
   // Add event listener to the form submit event
   form.addEventListener('submit', handleFormSubmit);
-
-  // Function to handle file selection
-  function handleFileUpload(event) {
-    const file = event.target.files[0];
-    const reader = new FileReader();
-
-    reader.onload = (fileEvent) => {
-      const fileData = fileEvent.target.result;
-
-      // Compare the file data to the values or criteria associated with the checkboxes
-      // Select the checkboxes programmatically based on the comparison
-      // You may need to parse the file data and perform appropriate comparisons
-
-      // Example: Select checkboxes with specific values
-      const checkboxes = Array.from(document.querySelectorAll('.form-check-input'));
-      checkboxes.forEach((checkbox) => {
-        const checkboxValue = checkbox.value;
-        // Perform the comparison based on the file data and checkbox values
-        // For example, if the checkbox value matches a certain condition in the file data, select the checkbox
-        if (fileData.includes(checkboxValue)) {
-          checkbox.checked = true;
-        }
-      });
-    };
-
-    reader.readAsText(file); // Read the file as text, adjust this based on the type of file you're working with
-  }
-
-  // Add event listener to the file input element
-  const fileInput = document.getElementById('file-input');
-  fileInput.addEventListener('change', handleFileUpload);
 };
-
-/* Falta hacer que retorne el JSON */
